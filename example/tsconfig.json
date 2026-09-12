@@ -1,0 +1,10 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "paths": {
+      "expo-hband-bridge": ["../src/index"],
+      "expo-hband-bridge/*": ["../src/*"]
+    }
+  }
+}
