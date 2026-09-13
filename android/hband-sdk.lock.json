@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "sourceArchive": "Android_Ble_SDK-master.zip",
+  "sourceArchiveSha256": "e72615e48f7339b96dca26a10acc303b19be26a0bbf073a27c9eec7e7e9ed091",
+  "protocolVersion": "2.3.81.15",
+  "scope": "Required dependency baseline from the supplied ZIP. No Goodix OTA, ECG JNI, map or demo UI integration.",
+  "artifacts": [
+    {
+      "alias": "vpbluetooth",
+      "path": "android/libs/vpbluetooth-1.20.aar",
+      "sourceEntry": "Android_Ble_SDK-master/android_sdk_source/jar_core/vpbluetooth-1.20.aar",
+      "bytes": 383711,
+      "sha256": "26d7037238d18a28ac373a511b7a2abdfac2a405e01564f90a89c926b5b48bd8"
+    },
+    {
+      "alias": "vpprotocol",
+      "path": "android/libs/vpprotocol-2.3.81.15.aar",
+      "sourceEntry": "Android_Ble_SDK-master/android_sdk_source/jar_core/vpprotocol-2.3.81.15.aar",
+      "bytes": 5668086,
+      "sha256": "756514429b1b68328f2152d85126d1dccc9ae5f0ea2d398429bba01d53588c27"
+    },
+    {
+      "alias": "jl-watch",
+      "path": "android/libs/JL_Watch_V1.13.1_11214-release.aar",
+      "sourceEntry": "Android_Ble_SDK-master/android_sdk_source/jar_core/JL_Watch_V1.13.1_11214-release.aar",
+      "bytes": 1189801,
+      "sha256": "7b63de70139ae92af67e74feffedc044a383cdda31914344eb3318bf41d5de6e"
+    },
+    {
+      "alias": "jl-rcsp",
+      "path": "android/libs/jl_rcsp_V0.7.2_527-release.aar",
+      "sourceEntry": "Android_Ble_SDK-master/android_sdk_source/jar_core/jl_rcsp_V0.7.2_527-release.aar",
+      "bytes": 584916,
+      "sha256": "0cbb1d46bcfda8f6d2b7a68d805c88dc4f543a4890fc2537e9aa76d0f93857b2"
+    },
+    {
+      "alias": "jl-bt-ota",
+      "path": "android/libs/jl_bt_ota_V1.10.0_10931-release.aar",
+      "sourceEntry": "Android_Ble_SDK-master/android_sdk_source/jar_core/jl_bt_ota_V1.10.0_10931-release.aar",
+      "bytes": 264341,
+      "sha256": "61764e43650862637c90fe7ad603a4fe948a0724be5508c301123d0013ab8aa8"
+    },
+    {
+      "alias": "bmp-convert",
+      "path": "android/libs/BmpConvert_V1.6.0_10604-release.aar",
+      "sourceEntry": "Android_Ble_SDK-master/android_sdk_source/jar_core/BmpConvert_V1.6.0_10604-release.aar",
+      "bytes": 621480,
+      "sha256": "8b5e6661b18eb39ac11f48caaee29c54fff07213455e8c6b06a3b8bc903dcca3"
+    },
+    {
+      "alias": "abpartool",
+      "path": "android/libs/abpartool-release.aar",
+      "sourceEntry": "Android_Ble_SDK-master/android_sdk_source/jar_core/abpartool-release.aar",
+      "bytes": 288875,
+      "sha256": "23f7e8e809a403562e165328ecc1102583e3e01e173906ebd90750739adc1399"
+    }
+  ],
+  "externalDependencies": [
+    "com.google.code.gson:gson:2.2.4",
+    "no.nordicsemi.android:mcumgr-core:2.7.4",
+    "no.nordicsemi.android:mcumgr-ble:2.7.4",
+    "no.nordicsemi.android.support.v18:scanner:1.4.2",
+    "androidx.localbroadcastmanager:localbroadcastmanager:1.1.0"
+  ]
+}

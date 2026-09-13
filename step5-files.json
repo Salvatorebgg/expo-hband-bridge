@@ -1,0 +1,65 @@
+{
+  "step": 5,
+  "files": [
+    {
+      "path": "README-step5.md",
+      "sha256": "16b86d00c0071496262f54eba1c6cc43143aff5e1d0f564c38ca8311681f1b75",
+      "previousStep4Sha256": null
+    },
+    {
+      "path": "android/src/main/java/expo/modules/hbandbridge/HBandBridgeModule.kt",
+      "sha256": "87d798ff92f9ea67670dded760224ca384f97e50803febe826119d7e2bb642e8",
+      "previousStep4Sha256": "b58b0ba9ef40423dff6e9f392901f1a15eac620b0e1de19c7303a21aa7bf83b0"
+    },
+    {
+      "path": "android/src/main/java/expo/modules/hbandbridge/HBandScanController.kt",
+      "sha256": "71abcdbcf922e53731fb4ed43aeae3e626d995628984a2f6df9203c76b08c214",
+      "previousStep4Sha256": null
+    },
+    {
+      "path": "android/src/main/java/expo/modules/hbandbridge/HBandScanEngine.kt",
+      "sha256": "0131f9ce3a4273a5acbe1d9eb86719feca5853fe82f1589cab8e45b5b620e7a0",
+      "previousStep4Sha256": null
+    },
+    {
+      "path": "docs/hband-step5-sdk-evidence.txt",
+      "sha256": "dbcd979166baa734dc6f665d828ce66cd52588e6cf9917fb68ffee6b9fa0a951",
+      "previousStep4Sha256": null
+    },
+    {
+      "path": "docs/hband-step5-verification.txt",
+      "sha256": "03b80b983fbfb74b9d83bc03b98890a53526e902e480d95ee00a68536c999020",
+      "previousStep4Sha256": null
+    },
+    {
+      "path": "scripts/check-hband-init.cjs",
+      "sha256": "2461dc8a07911c2f2733840957be7fe595238cf212b90e5995b2211e073fce5c",
+      "previousStep4Sha256": "9ebfe6096c49e7564f26fc98abe2eeb399343cdf230bc9be8ab0031c947dc62d"
+    },
+    {
+      "path": "scripts/check-hband-scan.cjs",
+      "sha256": "e02a3893821054103400a9bc60901dff5b1428220f0ceb3121e5b7f642e2eb90",
+      "previousStep4Sha256": null
+    },
+    {
+      "path": "src/HBandBridge.types.ts",
+      "sha256": "cbbf711d50c497165f09bff902c669273d11ff6bd0ca5175d69241fde6273ceb",
+      "previousStep4Sha256": "291228fc43caa21f909f1c8f2dcdf052e7abb95cd097b85523437d47d934bd64"
+    },
+    {
+      "path": "src/HBandBridgeModule.ts",
+      "sha256": "a198a2bc8f0cb5f42b4e742875243cc72b1b597e712693d29a03819afee5b5db",
+      "previousStep4Sha256": "b348558ddd11919a0dbaa0b982ae73fc18a6a77f12453e4f014920c2dc81cae7"
+    },
+    {
+      "path": "src/HBandBridgeModule.web.ts",
+      "sha256": "52c967dfe32264b8af2e8fed5f4fbce727f4587058427a167d0440f2abaaf19e",
+      "previousStep4Sha256": "bca205933680e7c042ef828c4a108c11b16a4c1732aeac7ffbb287dda48abfcb"
+    },
+    {
+      "path": "tests/kotlin/HBandScanEngineTest.kt",
+      "sha256": "afb0c35abdea5c2f80764f6bb07feaa9d4a5f3fb01467bce03a4d0693181377f",
+      "previousStep4Sha256": null
+    }
+  ]
+}

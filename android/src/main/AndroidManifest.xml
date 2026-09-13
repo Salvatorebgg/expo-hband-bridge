@@ -1,2 +1,40 @@
-<manifest>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+  <!-- 不强制限制宿主 App 必须安装在有 BLE 的设备上。 -->
+  <uses-feature
+    android:name="android.hardware.bluetooth_le"
+    android:required="false" />
+
+  <!-- Android 11 及更早系统使用的基础蓝牙权限。 -->
+  <uses-permission
+    android:name="android.permission.BLUETOOTH"
+    android:maxSdkVersion="30" />
+  <uses-permission
+    android:name="android.permission.BLUETOOTH_ADMIN"
+    android:maxSdkVersion="30" />
+
+  <!-- 本阶段约定：不通过蓝牙扫描推导物理位置。 -->
+  <uses-permission
+    android:name="android.permission.BLUETOOTH_SCAN"
+    android:usesPermissionFlags="neverForLocation" />
+  <uses-permission
+    android:name="android.permission.BLUETOOTH_CONNECT" />
+
+  <!-- 旧版 Android 的 BLE 扫描需要位置权限。 -->
+  <uses-permission
+    android:name="android.permission.ACCESS_COARSE_LOCATION"
+    android:maxSdkVersion="30" />
+  <uses-permission
+    android:name="android.permission.ACCESS_FINE_LOCATION"
+    android:maxSdkVersion="30" />
+  <!-- Vendor SDK network access; this is not a request for health-data upload. -->
+  <uses-permission android:name="android.permission.INTERNET" />
+
+  <application>
+    <!-- Fully-qualified SDK service; do not copy Demo activities/signing config. -->
+    <service
+      android:name="com.inuker.bluetooth.library.BluetoothService"
+      android:enabled="true"
+      android:exported="false" />
+  </application>
+
 </manifest>

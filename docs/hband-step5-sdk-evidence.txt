@@ -1,0 +1,38 @@
+来自当前会话用户上传文件的接口核对，不以 GitHub HEAD 替换用户版本。
+源文件：Android_Ble_SDK-master.zip / android_sdk_source/jar_core/
+
+vpbluetooth-1.20.aar
+SHA-256: 26d7037238d18a28ac373a511b7a2abdfac2a405e01564f90a89c926b5b48bd8
+vpprotocol-2.3.81.15.aar
+SHA-256: 756514429b1b68328f2152d85126d1dccc9ae5f0ea2d398429bba01d53588c27
+
+在 classes.jar 中使用 javap 查看，未运行 SDK：
+VPOperateManager:
+  public void startScanDevice(com.inuker.bluetooth.library.search.response.SearchResponse);
+  public void startScanDevice(int, com.inuker.bluetooth.library.search.response.SearchResponse);
+  public void stopScanDevice();
+
+SearchResponse:
+  void onSearchStarted();
+  void onDeviceFounded(com.inuker.bluetooth.library.search.SearchResult);
+  void onSearchStopped();
+  void onSearchCanceled();
+
+SearchResult:
+  getName(), getAddress(), rssi, scanRecord。
+本桥仅复制 name/address/rssi，不导出 scanRecord。
+
+startScanDevice(int, SearchResponse) 的字节码显示：
+  输入 int * 1000 -> SearchRequest.Builder.searchBluetoothLeDevice(..., 1)。
+协议库内部 VPOperateManager$vp_b.onDeviceFounded 会调用
+  VpBleByteUtil.isBeyondVp(scanRecord)
+  VpBleByteUtil.isBrandDevice(scanRecord)
+  并依据内部标志分支后才转发结果。
+因此它确实不是“列出所有 BLE 广播”的无过滤入口；本桥未绕过此机制。
+这不能证明特定型号兼容或实际数据可读。
+
+官方资料（本轮另行核对；用于 API 使用方式，不替换以上固定二进制版本）：
+https://github.com/HBandSDK/Android_Ble_SDK
+https://raw.githubusercontent.com/HBandSDK/Android_Ble_SDK/master/android_sdk_source/Demo/VpBluetoothSDK/app/src/main/java/com/timaimee/vpdemo/activity/MainActivity.java
+https://docs.expo.dev/modules/module-api/
+https://developer.android.com/develop/connectivity/bluetooth/ble/find-ble-devices

@@ -1,0 +1,57 @@
+第五步验证记录
+================
+实际执行（本回答环境）：
+- Kotlin 1.9.0 + OpenJDK 21：21 项纯 JVM 扫描状态机测试通过。
+  包含输入时长、状态确认、地址去重/上限、旧会话回调隔离、超时、异常、并发占用、销毁。
+- 前步骤 HBandInitializationGate 8 项纯 JVM 测试重新执行通过。
+- 检查脚本在第三步+第四步+第五步合并副本上通过。
+- 3 项源码检查负例（回调拼写、事件缺失、权限校验缺失）均被拒绝。
+- TypeScript 5.8.3：3 个变更 TS 文件语法转译无语法错误。
+- 补充检查：使用临时 Expo 类型声明替身进行 TS 接口类型检查通过。
+  它不是用户 Expo 57.0.21 依赖环境的完整 tsc 检查。
+- 补充检查：使用真实厂商 classes.jar + 临时 Android/Expo 签名替身编译 Kotlin 通过。
+  只辅助发现 Kotlin 语法/API 签名问题；替身不执行 Android 功能，也不验证 SDK 服务。
+  此项不是 Android Gradle 构建，不计作 Android 编译成功。
+- 用 javap 检查了用户上传 AAR 中的真实扫描签名、秒到毫秒转换和广播过滤逻辑。
+
+未执行/未证明：
+- 用户电脑上的完整 TypeScript 类型检查（需用户运行）。
+- Android Gradle 构建、Expo 自动链接最终产物、Manifest 合并和依赖冲突。
+- HBand SDK 的 Android 真机初始化、权限弹窗、Activity 生命周期实际行为。
+- 手机蓝牙扫描、设备兼容性、手表发现、连接、认证、健康数据读取。
+- 性能、功耗、吞吐、延迟、稳定性或发布版 R8 混淆/裁剪。
+
+21 项扫描测试输出：
+PASS idle does not call SDK
+PASS duration bounds reject before SDK
+PASS request accepted is not start confirmed
+PASS a duplicate start never cancels original scan
+PASS discovery de-duplicates case insensitive address; nullable name
+PASS invalid addresses are ignored
+PASS bounded result memory
+PASS stopped callback ends scan and cancels timeout
+PASS stop request must await SDK acknowledgment
+PASS SDK cancellation is not successful connection
+PASS deadline stops scan; synchronous stop callback accepted
+PASS missing start callback produces failure, not success
+PASS unacknowledged stop poisons process ownership
+PASS late old callback does not contaminate new session
+PASS found after stopping is discarded
+PASS process ownership prevents competing scanner modules
+PASS start exception rejects and requests cleanup
+PASS linkage error is reported with cleanup, not crash in engine
+PASS stop exception blocks further attempts
+PASS permission loss error emits event and awaits cleanup
+PASS dispose requests stop only once and emits nothing further
+21 pure JVM scan-engine tests passed. No Android/HBand/BLE execution.
+
+8 项初始化回归输出：
+[PASS] initial state and getters do not execute vendor action
+[PASS] mark completed only AFTER action returns
+[PASS] repeated success does not execute the action again
+[PASS] exception is recorded; partially initialized SDK is not retried
+[PASS] native linkage failure rejects rather than claiming success
+[PASS] SecurityException inside vendor call is not swallowed
+[PASS] reentrant initialization is refused without a second action
+[PASS] two concurrent callers execute one action; snapshot stays readable
+8 JVM state-guard tests passed. NOT an Android or HBand integration test.

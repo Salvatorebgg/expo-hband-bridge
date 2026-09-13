@@ -6,6 +6,7 @@ plugins {
 group = 'expo.modules.hbandbridge'
 version = '0.1.0'
 
+// Inherit the Android/Java/Kotlin toolchain from the eventual Expo host.
 android {
   namespace "expo.modules.hbandbridge"
   defaultConfig {
@@ -15,4 +16,25 @@ android {
   lintOptions {
     abortOnError false
   }
+}
+
+dependencies {
+  // Expo SDK 52+ registers these AAR projects through expo-module.config.json.
+  // Use single-quoted '$alias' to avoid Groovy variable interpolation.
+  implementation project(path: ':' + project.name + '$vpbluetooth')
+  implementation project(path: ':' + project.name + '$vpprotocol')
+  implementation project(path: ':' + project.name + '$jl-watch')
+  implementation project(path: ':' + project.name + '$jl-rcsp')
+  implementation project(path: ':' + project.name + '$jl-bt-ota')
+  implementation project(path: ':' + project.name + '$bmp-convert')
+  implementation project(path: ':' + project.name + '$abpartool')
+
+  // Baseline versions from the supplied vendor README/Demo.
+  // Gson is a Maven dependency; do NOT also copy gson-2.2.4.jar into libs.
+  // Do not force/exclude these globally; audit the host's resolved versions later.
+  implementation 'com.google.code.gson:gson:2.2.4'
+  implementation 'no.nordicsemi.android:mcumgr-core:2.7.4'
+  implementation 'no.nordicsemi.android:mcumgr-ble:2.7.4'
+  implementation 'no.nordicsemi.android.support.v18:scanner:1.4.2'
+  implementation 'androidx.localbroadcastmanager:localbroadcastmanager:1.1.0'
 }

@@ -1,0 +1,36 @@
+Step 4 verification record
+
+Source: user-supplied Android_Ble_SDK-master.zip, android_sdk_source/jar_core/vpprotocol-2.3.81.15.aar
+AAR SHA-256: 756514429b1b68328f2152d85126d1dccc9ae5f0ea2d398429bba01d53588c27
+
+Public method signatures inspected with javap on the actual AAR/classes.jar:
+  public static final java.lang.String VPPROTOCOL_VERSION;
+  public void setAutoConnectBTBySdk(boolean);
+  public void init(android.content.Context);
+  public static com.veepoo.protocol.VPOperateManager getInstance();
+
+The init method returns void, not a readiness callback. Inspection of this version showed
+it may replace its stored singleton during init. The adapter therefore retrieves it again
+after init and does not retain the pre-init instance. No claim of full SDK implementation audit.
+
+Executed: production HBandInitializationGate.kt compiled and its JVM unit tests executed.
+Test action functions are test doubles, NOT the HBand SDK. Results:
+[PASS] initial state and getters do not execute vendor action
+[PASS] mark completed only AFTER action returns
+[PASS] repeated success does not execute the action again
+[PASS] exception is recorded; partially initialized SDK is not retried
+[PASS] native linkage failure rejects rather than claiming success
+[PASS] SecurityException inside vendor call is not swallowed
+[PASS] reentrant initialization is refused without a second action
+[PASS] two concurrent callers execute one action; snapshot stays readable
+8 JVM state-guard tests passed. NOT an Android or HBand integration test.
+
+Executed: Kotlin syntax/vendor-call signature compilation of HBandSdkRuntime.kt with the
+actual vpprotocol classes.jar and small compile-only Context/Looper stubs. These stubs are
+NOT shipped. This is NOT Android SDK / Gradle / Expo compilation or execution.
+
+Executed: TypeScript syntax transpilation; source contract checks on merged step2+step3+step4.
+Executed: negative static-check cases (missing source, mismatched method name, illegal scan call).
+Not executed: user's installed Expo/React Native TypeScript type environment; real Expo
+native module compilation; SDK initialization on Android; Service binding; BLE scanning;
+device authentication; health-data reads; performance tests.

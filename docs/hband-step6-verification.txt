@@ -1,0 +1,30 @@
+HBand Bridge Step 6 — verification boundaries
+Date: 2026-09-13
+
+Executed in this container:
+1. node --test tests/example-host.test.cjs: 12 tests passed.
+   These use isolated local fixtures, including synthetic package metadata and a fake AAR.
+   They check version selection, refusal of version mismatches, missing files, refusal to
+   overwrite unrelated host packages, source selection, real offline npm tarball creation,
+   immutable parent package configuration, deterministic/revised tarball naming, and
+   interpretation/rejection of synthetic Autolinking JSON results.
+2. node --check on both new .cjs scripts: passed.
+3. TypeScript 5.8.3 transpileModule syntactic checks for App.tsx, index.js,
+   metro.config.js and babel.config.js: no error diagnostics.
+4. JSON parse checks for app.json and both tsconfig files: passed.
+
+Not executed here:
+- npm installation of Expo 57, React Native 0.86.3 or expo-dev-client in a real host.
+- Full dependency-aware TypeScript type checking of the app in the user's environment.
+- The actual Expo Autolinking CLI against the user's installed host.
+- Windows PowerShell setup commands or the cmd.exe invocation branch.
+- Expo prebuild or Android/Gradle/Kotlin/HBand compilation.
+- App installation, Android permission UI, vendor SDK initialization or BLE scans.
+- Rendering/visual QA on a phone, device connectivity or performance tests.
+
+The host checker will run the real locally installed Autolinking CLI on the user's PC.
+A successful check still is not a successful Android build. The final Gradle command
+must return success and produce the APK; device tests are a separate later step.
+
+No patient data, remote health API, automatic scanning, device connection, firmware
+updates, or simulated health readings are included in this test host.
